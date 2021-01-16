@@ -10,7 +10,7 @@ namespace EFcore.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data source = (localdb)\\MSSQLLocalDB;Initial Catalog=CursoEFCora; Integrated Security=true");
+            optionsBuilder.UseSqlServer("Server = SQNOT11813\\SQLEXPRESS;Initial Catalog=CursoEFCore; Integrated Security=true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
