@@ -15,7 +15,9 @@ namespace EFcore
             // InserirDadosEmMassa();
             // ConsultarDados();
             // CadastrarPedido();
-            ConsultaPedidoCarregamentoAdiantado();
+            // ConsultaPedidoCarregamentoAdiantado();
+            // AtualizarDados();
+            RemoverRegistro();
         }
 
         private static void InserirDadosEmMassa()
@@ -116,6 +118,26 @@ namespace EFcore
             using var db = new Data.ApplicationContext();
             var pedidos = db.Pedidos.Include(p => p.Itens).ThenInclude(p => p.Produto).ToList();
             Console.WriteLine(pedidos.Count);
+        }
+
+        private static void AtualizarDados()
+        {
+            using var db = new Data.ApplicationContext();
+            var cliente = db.Clientes.Find(1);
+            cliente.Nome = "nome alterado";
+            db.SaveChanges();
+        }
+
+        private static void RemoverRegistro()
+        {
+            using var db = new Data.ApplicationContext();
+            // var cliente = db.Clientes.Find(1);
+            var cliente = new Cliente { Id = 3 };
+            // db.Clientes.Remove(cliente);
+            // db.Remove(cliente);
+            db.Entry(cliente).State = EntityState.Deleted;
+
+            db.SaveChanges();
         }
     }
 }
